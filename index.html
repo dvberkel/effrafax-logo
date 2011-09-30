@@ -4,14 +4,27 @@
 		<script src="js/jquery-1.6.4.min.js"></script>
 		<script src="js/raphael-min.js"></script>
 		<script type="text/javascript">
+			var Blob = function(x,y, attributes) {
+				attributes = attributes || {fill: "black", stroke: "black"};
+				var blobSize = 25;
+				var margin = 5;
+				var size = blobSize - margin;
+				var offset = margin / 2;
+				this.drawOn = function(paper) {
+					paper.rect(
+						blobSize * x + offset, blobSize * y + offset, size, size
+					).attr(attributes);
+				}
+			}
+			
 			$(function(){
 				var paper = Raphael('logo', 1000, 125);
 				
-				paper.rect(0, 0, 20, 20);
-				paper.rect(0, 25, 20, 20);
-				paper.rect(0, 50, 20, 20);
-				paper.rect(0, 75, 20, 20);
-				paper.rect(0, 100, 20, 20).attr({fill: "black"});
+				(new Blob(0,0)).drawOn(paper);
+				(new Blob(0,1)).drawOn(paper);
+				(new Blob(0,2)).drawOn(paper);
+				(new Blob(0,3)).drawOn(paper);
+				(new Blob(0,4)).drawOn(paper);
 			});
 		</script>
 	</head>
